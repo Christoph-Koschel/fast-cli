@@ -67,7 +67,7 @@ export class ArgumentAttribute {
 }
 
 export abstract class Command {
-    public abstract execute(argv: ArgumentHandler): number;
+    public abstract execute(argv: ArgumentHandler): Promise<number>;
 
     public abstract getCMD(): CommandConstructor;
 

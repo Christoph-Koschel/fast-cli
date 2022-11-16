@@ -18,7 +18,7 @@ export declare class ArgumentAttribute {
     constructor(name: string, value: string);
 }
 export declare abstract class Command {
-    abstract execute(argv: ArgumentHandler): number;
+    abstract execute(argv: ArgumentHandler): Promise<number>;
     abstract getCMD(): CommandConstructor;
     abstract getDescription(): string;
 }

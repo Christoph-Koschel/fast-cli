@@ -15,7 +15,7 @@ export class CLI {
         this.cmds.push(cmd);
     }
 
-    public exec(): number {
+    public async exec(): Promise<number> {
         const cmdName: string | null = this.args[0].startsWith("-") ? null : <string>this.args.shift();
         const argumentHandler: ArgumentHandler = this.buildArguments();
 
@@ -35,7 +35,7 @@ export class CLI {
                 if (isHelp) {
                     process.stdout.write(command.toString());
                 } else {
-                    return cmd.execute(argumentHandler);
+                    return await cmd.execute(argumentHandler);
                 }
             }
         }

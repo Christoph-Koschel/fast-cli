@@ -14,7 +14,7 @@ class CLI {
     register(cmd) {
         this.cmds.push(cmd);
     }
-    exec() {
+    async exec() {
         const cmdName = this.args[0].startsWith("-") ? null : this.args.shift();
         const argumentHandler = this.buildArguments();
         const isHelp = argumentHandler.hasFlag("--help");
@@ -33,7 +33,7 @@ class CLI {
                     process.stdout.write(command.toString());
                 }
                 else {
-                    return cmd.execute(argumentHandler);
+                    return await cmd.execute(argumentHandler);
                 }
             }
         }

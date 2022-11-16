@@ -4,7 +4,7 @@ export declare class CLI {
     private cmds;
     constructor(args: string[]);
     register(cmd: Command): void;
-    exec(): number;
+    exec(): Promise<number>;
     private buildArguments;
     private isFlag;
     private printGlobalHelp;
