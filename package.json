@@ -1,0 +1,25 @@
+{
+  "name": "fast-cli",
+  "version": "1.0.0",
+  "description": "Framework for fast CLI development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Christoph-Koschel/fast-cli.git"
+  },
+  "keywords": [
+    "Framework"
+  ],
+  "author": "Christoph Koschel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Christoph-Koschel/fast-cli/issues"
+  },
+  "homepage": "https://github.com/Christoph-Koschel/fast-cli#readme",
+  "dependencies": {
+    "@types/node": "^18.11.9"
+  }
+}
