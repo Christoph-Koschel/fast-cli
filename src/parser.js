@@ -47,7 +47,7 @@ class CLI {
             if (value.startsWith("-") && !this.isFlag(value)) {
                 for (let i = index; i < this.args.length; i++) {
                     if (!this.isFlag(value)) {
-                        attrs.push(new handler_1.ArgumentAttribute(value, this.args[i]));
+                        attrs.push(new handler_1.ArgumentAttribute(value, this.args[i + 1]));
                         break;
                     }
                 }

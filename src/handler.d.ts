@@ -31,6 +31,7 @@ export declare class CommandConstructor {
     addAttribute(char: string, name: string, optional: boolean, description: string): CommandConstructor;
     equals(name: string, argv: ArgumentHandler): boolean;
     toString(): string;
+    private calcSize;
 }
 export declare class CommandFlag {
     readonly name: string;

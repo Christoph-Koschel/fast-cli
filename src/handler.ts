@@ -151,15 +151,36 @@ export class CommandConstructor {
         }
 
         str += "\n\n";
+
+        let size: number = this.calcSize();
+
         for (let attr of this.attrs) {
-            str += attr.char + (attr.optional ? "  [OPTIONAL]" : "") + "   " + attr.description + "\n";
+            str += attr.char + " ".repeat(size - attr.char.length) + (attr.optional ? "  [OPTIONAL]" : "") + "   " + attr.description + "\n";
         }
 
         for (let flags of this.flags) {
-            str += flags.name + (flags.optional ? "  [OPTIONAL]" : "") + "   " + flags.description + "\n";
+            str += flags.name + " ".repeat(size - flags.name.length) + (flags.optional ? "  [OPTIONAL]" : "") + "   " + flags.description + "\n";
         }
 
         return str;
+    }
+
+    private calcSize(): number {
+        let size: number = 0;
+
+        this.flags.forEach((x) => {
+            if (x.name.length > size) {
+                size = x.name.length;
+            }
+        });
+
+        this.attrs.forEach((x) => {
+            if (x.char.length > size) {
+                size = x.char.length;
+            }
+        });
+
+        return size;
     }
 }
 
