@@ -33,7 +33,7 @@ export class CLI {
             let command: CommandConstructor = cmd.getCMD();
             if (command.equals(cmdName, argumentHandler)) {
                 if (isHelp) {
-                    process.stdout.write(command.toString());
+                    process.stdout.write(command.toString(cmd));
                 } else {
                     return await cmd.execute(argumentHandler);
                 }
@@ -52,7 +52,7 @@ export class CLI {
             if (value.startsWith("-") && !this.isFlag(value)) {
                 for (let i = index; i < this.args.length; i++) {
                     if (!this.isFlag(value)) {
-                        attrs.push(new ArgumentAttribute(value, this.args[i+1]));
+                        attrs.push(new ArgumentAttribute(value, this.args[i + 1]));
                         break;
                     }
                 }

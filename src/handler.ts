@@ -123,7 +123,7 @@ export class CommandConstructor {
         return true;
     }
 
-    public toString(): string {
+    public toString(cmd: Command): string {
         let str: string = this.name + " ";
 
         for (let attr of this.attrs) {
@@ -150,6 +150,8 @@ export class CommandConstructor {
             }
         }
 
+        str += "\n\n";
+        str += cmd.getDescription();
         str += "\n\n";
 
         let size: number = this.calcSize();
