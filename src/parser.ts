@@ -101,6 +101,7 @@ export class CLI {
             }
         }
 
+
         group = group.sort((a, b) => a.name < b.name ? -1 : 1);
         for (let groupElement of group) {
             process.stdout.write(`${groupElement.name} `);
