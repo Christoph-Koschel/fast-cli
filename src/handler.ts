@@ -95,6 +95,10 @@ export class CommandConstructor {
         return this;
     }
 
+    public getName(): string {
+        return this.name;
+    }
+
     public equals(name: string, argv: ArgumentHandler): boolean {
         if (name != this.name) {
             return false;

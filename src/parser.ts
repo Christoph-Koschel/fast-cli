@@ -29,12 +29,25 @@ export class CLI {
             return 1;
         }
 
-        for (let cmd of this.cmds) {
-            let command: CommandConstructor = cmd.getCMD();
-            if (command.equals(cmdName, argumentHandler)) {
-                if (isHelp) {
-                    process.stdout.write(command.toString(cmd));
-                } else {
+        if (isHelp) {
+            let cmds: Command[] = [];
+
+            for (let cmd of this.cmds) {
+                let command: CommandConstructor = cmd.getCMD();
+                if (command.getName() == cmdName) {
+                    cmds.push(cmd);
+                }
+            }
+
+            console.log("Found " + cmds.length + " commands\n");
+            cmds.forEach(cmd => {
+                console.log(cmd.getCMD().toString(cmd));
+                console.log("\n");
+            });
+        } else {
+            for (let cmd of this.cmds) {
+                let command: CommandConstructor = cmd.getCMD();
+                if (command.equals(cmdName, argumentHandler)) {
                     return await cmd.execute(argumentHandler);
                 }
             }
@@ -69,7 +82,29 @@ export class CLI {
     }
 
     private printGlobalHelp() {
-        // TODO print global help;
+        let group: { name: string, overflow: number }[] = [];
+        for (let cmd of this.cmds) {
+            let edit: boolean = false;
+
+            for (let groupElement of group) {
+                if (groupElement.name == cmd.getCMD().getName()) {
+                    groupElement.overflow++;
+                    edit = true;
+                }
+            }
+
+            if (!edit) {
+                group.push({
+                    name: cmd.getCMD().getName(),
+                    overflow: 0
+                });
+            }
+        }
+
+        group = group.sort((a, b) => a.name < b.name ? -1 : 1);
+        for (let groupElement of group) {
+            process.stdout.write(`${groupElement.name} `);
+        }
     }
 
     private printCommandNotFound() {
